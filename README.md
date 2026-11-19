@@ -89,7 +89,7 @@ npm run build:carousel
 当前发布地址：
 
 ```text
-https://lumighui.github.io/luzhaoxin-portfolio/
+https://lumighui.github.io/luzhaoxin-portfolio-v2/
 ```
 
 ## 文件结构
