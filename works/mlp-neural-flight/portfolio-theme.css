@@ -1,0 +1,181 @@
+:root {
+  --bg: #1b120d;
+  --bg-deep: #100906;
+  --surface: #24170f;
+  --surface-raised: #302016;
+  --ink: #f5eadb;
+  --muted: #bca48b;
+  --line: rgba(245, 223, 196, 0.14);
+  --line-strong: rgba(245, 223, 196, 0.27);
+  --lime: #dfad69;
+  --cyan: #c69568;
+  --coral: #d77d55;
+  --amber: #f1c47c;
+  --shadow: 0 28px 90px rgba(16, 7, 2, 0.38);
+}
+
+body {
+  background:
+    radial-gradient(circle at 82% 8%, rgba(215, 161, 95, 0.14), transparent 25rem),
+    radial-gradient(circle at 14% 25%, rgba(126, 72, 39, 0.12), transparent 29rem),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
+}
+
+body::before {
+  background-image: linear-gradient(rgba(245, 234, 219, 0.025) 1px, transparent 1px);
+}
+
+h1 em {
+  background: linear-gradient(90deg, #b86f3f, #f0c993 48%, #9e7658);
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.hero-lead,
+.station-intro,
+.model-note p,
+tbody td,
+.control-button {
+  color: #c8b39f;
+}
+
+.button-primary {
+  color: #28180c;
+  background: #dfad69;
+  border-color: #dfad69;
+  box-shadow: 0 12px 32px rgba(215, 161, 95, 0.16);
+}
+
+.button-primary:hover {
+  background: #efc88e;
+}
+
+.hero-visual::before {
+  background: radial-gradient(circle, rgba(215, 161, 95, 0.13), transparent 65%);
+}
+
+.visual-shell {
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.035), transparent 40%),
+    rgba(37, 23, 15, 0.9);
+}
+
+.visual-shell::after {
+  box-shadow: inset 0 0 90px rgba(215, 161, 95, 0.035);
+}
+
+.map-node circle {
+  fill: #302016;
+}
+
+.map-node.output circle {
+  fill: rgba(215, 161, 95, 0.1);
+}
+
+.cockpit {
+  background: rgba(36, 23, 15, 0.94);
+}
+
+.scene-shell {
+  background:
+    radial-gradient(circle at 50% 50%, rgba(215, 161, 95, 0.1), transparent 55%),
+    #20140d;
+}
+
+#networkCanvas,
+.hero-visual svg {
+  filter: sepia(0.42) saturate(0.78) hue-rotate(-45deg) brightness(0.95);
+}
+
+.transport {
+  background: rgba(24, 14, 9, 0.9);
+}
+
+.control-main {
+  color: #28180c;
+  background: #dfad69;
+  border-color: #dfad69;
+}
+
+.control-main:hover:not(:disabled),
+.control-main:focus-visible {
+  color: #28180c;
+  background: #efc88e;
+  border-color: #efc88e;
+}
+
+.control-button[aria-pressed="true"] {
+  color: #edc183;
+  border-color: rgba(215, 161, 95, 0.38);
+}
+
+.telemetry {
+  background:
+    linear-gradient(160deg, rgba(215, 161, 95, 0.045), transparent 45%),
+    var(--surface);
+}
+
+.formula-card {
+  border-color: rgba(215, 161, 95, 0.2);
+  background: rgba(215, 161, 95, 0.055);
+}
+
+.formula-card code {
+  color: var(--cyan);
+}
+
+.telemetry-grid div {
+  background: #21140d;
+}
+
+.station-track button::before,
+.station-track button::after {
+  background: #4a3324;
+}
+
+.station-track button.is-current::after {
+  box-shadow: 0 0 0 5px rgba(215, 161, 95, 0.12), 0 0 14px var(--lime);
+}
+
+.flow-card {
+  background: rgba(36, 23, 15, 0.86);
+}
+
+.flow-card:hover,
+.flow-card:focus-visible,
+.flow-card.is-active {
+  border-color: rgba(215, 161, 95, 0.48);
+  background: rgba(51, 32, 21, 0.96);
+}
+
+.flow-card::after {
+  background: radial-gradient(circle, rgba(215, 161, 95, 0.12), transparent 65%);
+}
+
+.model-note {
+  background: rgba(215, 125, 85, 0.06);
+}
+
+.matrix-card {
+  background: rgba(33, 20, 13, 0.94);
+}
+
+.output-strip {
+  background: rgba(215, 161, 95, 0.045);
+}
+
+.site-header,
+.site-footer {
+  display: none;
+}
+
+.hero {
+  min-height: auto;
+  padding-top: 64px;
+}
+
+@media (max-width: 760px) {
+  .hero {
+    padding-top: 42px;
+  }
+}

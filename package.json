@@ -1,0 +1,16 @@
+{
+  "name": "luzhaoxin-portfolio",
+  "version": "2.1.0",
+  "private": true,
+  "description": "卢朝鑫的个人作品小屋，含三阶段入口与圆形作品轮播。",
+  "scripts": {
+    "build:carousel": "esbuild ./src/carousel-entry.jsx --bundle --minify --format=iife --target=es2020 --jsx=automatic --outfile=./assets/circular-carousel.bundle.js"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0"
+  }
+}

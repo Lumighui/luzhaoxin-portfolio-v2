@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="我和我的AI工具：AIgent使用情况汇总">
+  <meta name="theme-color" content="#1b120d">
+  <title>我和我的AI——AI agent使用情况</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230e1111'/%3E%3Ccircle cx='32' cy='32' r='20' fill='none' stroke='%23dcff54' stroke-width='3'/%3E%3Cpath d='M32 12v40M12 32h40' stroke='%23dcff54' stroke-width='2'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="warm-theme.css">
+</head>
+<body>
+  <div class="shell">
+    <header class="site-header" id="siteHeader">
+      <div class="topbar">
+        <a class="brand" href="#overview" aria-label="返回页面顶部">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span>个人 AI 工具档案</span>
+        </a>
+        <nav class="site-nav" id="siteNav" aria-label="主导航">
+          <a class="nav-link is-active" href="#overview" data-nav-section="overview">总览</a>
+          <a class="nav-link" href="#tool-index" data-nav-section="tools">工具记录</a>
+          <div class="nav-tool-links" id="toolNavLinks"></div>
+        </nav>
+        <div class="top-actions">
+          <span class="status" id="statusText">3 条使用记录</span>
+          <button class="manage-button" id="manageButton" type="button" aria-expanded="false" aria-controls="managementToolbar">
+            管理内容
+          </button>
+        </div>
+      </div>
+      <div class="nav-progress" aria-hidden="true"><span id="navProgress"></span></div>
+    </header>
+
+    <main id="top">
+      <section class="hero" id="overview" aria-labelledby="pageTitle" data-nav-target="overview">
+        <div class="hero-copy">
+          <p class="hero-meta">个人使用记录 / 成果追踪</p>
+          <h1 id="pageTitle">我和我的<br><em>AI工具</em></h1>
+          <p class="subtitle">AIgent使用情况汇总</p>
+        </div>
+        <div class="hero-bottom">
+          <p class="hero-note">每一个工具都留下了可追溯的工作路径：我让它做了什么，以及最后真正完成了什么。</p>
+          <div class="search-box" role="search">
+            <label for="searchInput">用途搜索</label>
+            <input id="searchInput" type="search" autocomplete="off" placeholder="输入 PPT、代码、论文、资料整理……" aria-describedby="searchHint">
+            <button class="clear-search" id="clearSearch" type="button" aria-label="清空搜索">×</button>
+          </div>
+          <p class="sr-only" id="searchHint">搜索会匹配工具名称、用途、成效和标签。</p>
+        </div>
+      </section>
+
+      <section class="tool-index" id="tool-index" data-nav-target="tools" aria-labelledby="toolIndexTitle">
+        <div class="tool-index-copy">
+          <p>工具记录</p>
+          <h2 id="toolIndexTitle">从用途出发，找到对应的协作方式</h2>
+        </div>
+        <nav class="tool-switcher" id="toolSwitcher" aria-label="快速切换工具板块"></nav>
+      </section>
+
+      <section class="management-toolbar" id="managementToolbar" aria-label="内容管理工具" hidden>
+        <div class="management-copy">
+          <strong>内容管理</strong>
+          <span>修改会自动保存在当前浏览器，可随时导出备份。</span>
+        </div>
+        <div class="management-actions">
+          <button class="toolbar-button primary" id="addToolButton" type="button">新增工具</button>
+          <button class="toolbar-button" id="exportButton" type="button">导出备份</button>
+          <button class="toolbar-button" id="importButton" type="button">导入备份</button>
+          <button class="toolbar-button danger" id="resetButton" type="button">恢复初始内容</button>
+          <button class="toolbar-button finish" id="finishManageButton" type="button">完成管理</button>
+          <input id="importFileInput" type="file" accept="application/json,.json" hidden>
+        </div>
+      </section>
+
+      <section class="results-bar" aria-live="polite" aria-atomic="true">
+        <p id="resultsText">显示全部 3 条使用记录</p>
+        <p class="save-state" id="saveState">内容保存在当前浏览器</p>
+      </section>
+
+      <section class="tool-list" id="toolList" aria-label="AI 工具使用记录"></section>
+
+      <section class="empty-state" id="emptyState" role="status" hidden>
+        <strong id="emptyTitle">暂时没有匹配记录</strong>
+        <p id="emptyCopy">换一个用途关键词试试，例如“简历”“代码”或“论文”。</p>
+        <button class="text-button" id="emptyAction" type="button">清空搜索</button>
+      </section>
+    </main>
+
+    <footer>
+      <p>内容来自个人使用记录，只呈现真实用途与成效，不虚构效率数字。</p>
+      <p>方向 B · 成果信号</p>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <dialog class="editor-dialog" id="editorDialog" aria-labelledby="editorTitle">
+    <form class="editor-form" id="toolForm" novalidate>
+      <header class="editor-head">
+        <div>
+          <p class="editor-kicker">工具使用记录</p>
+          <h2 id="editorTitle">新增 AI 工具</h2>
+        </div>
+        <button class="dialog-close" id="closeEditorButton" type="button" aria-label="关闭编辑窗口">×</button>
+      </header>
+
+      <div class="editor-grid">
+        <label class="field">
+          <span>工具名称 <b aria-hidden="true">*</b></span>
+          <input id="fieldName" name="name" type="text" maxlength="60" autocomplete="off" required placeholder="例如 workbody">
+        </label>
+
+        <label class="field compact-field">
+          <span>字母标记</span>
+          <input id="fieldMonogram" name="monogram" type="text" maxlength="4" autocomplete="off" placeholder="W">
+        </label>
+
+        <label class="field">
+          <span>用途概括</span>
+          <input id="fieldFocus" name="focus" type="text" maxlength="80" autocomplete="off" placeholder="例如 内容组织与学习表达">
+        </label>
+
+        <label class="field">
+          <span>成果关键词</span>
+          <input id="fieldSignal" name="signal" type="text" maxlength="40" autocomplete="off" placeholder="例如 表达效率">
+        </label>
+
+        <label class="field wide-field">
+          <span>使用工具做了什么 <b aria-hidden="true">*</b></span>
+          <textarea id="fieldUses" name="uses" rows="5" required placeholder="每行填写一项用途"></textarea>
+          <small>每一行会生成一条用途记录。</small>
+        </label>
+
+        <label class="field wide-field">
+          <span>取得了什么成效 <b aria-hidden="true">*</b></span>
+          <textarea id="fieldResult" name="result" rows="5" required placeholder="填写使用工具后取得的真实成效"></textarea>
+        </label>
+
+        <label class="field wide-field">
+          <span>标签</span>
+          <input id="fieldTags" name="tags" type="text" maxlength="180" autocomplete="off" placeholder="用逗号分隔，例如 PPT, 简历, Excel">
+          <small>标签会参与搜索，也会显示在成效区块中。</small>
+        </label>
+      </div>
+
+      <p class="form-error" id="formError" role="alert" hidden></p>
+
+      <footer class="editor-actions">
+        <button class="toolbar-button" id="cancelEditorButton" type="button">取消</button>
+        <button class="toolbar-button primary" type="submit">保存记录</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <noscript>
+    <div class="noscript">此网站的编辑与搜索功能需要启用 JavaScript。</div>
+  </noscript>
+
+  <script src="embed-mode.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

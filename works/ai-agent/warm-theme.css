@@ -1,0 +1,125 @@
+:root {
+  --black: #1b120d;
+  --surface: #271a12;
+  --surface-2: #35241a;
+  --line: #654936;
+  --line-soft: rgba(246, 220, 189, 0.13);
+  --white: #f4eadb;
+  --muted: #bda48b;
+  --lime: #d7a15f;
+  --mint: #e0bd83;
+  --orange: #df8d55;
+  --violet: #bf8d73;
+  --danger: #e8a088;
+  --shadow: 0 22px 70px rgba(17, 8, 3, 0.46);
+}
+
+body {
+  background:
+    radial-gradient(circle at 72% 3%, rgba(215, 161, 95, 0.15), transparent 26%),
+    radial-gradient(circle at 8% 38%, rgba(136, 74, 39, 0.12), transparent 30%),
+    var(--black);
+}
+
+body::before {
+  background:
+    linear-gradient(rgba(244, 234, 219, 0.027) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(244, 234, 219, 0.027) 1px, transparent 1px);
+}
+
+.site-header {
+  background: rgba(27, 18, 13, 0.84);
+}
+
+.site-header.is-scrolled {
+  background: rgba(27, 18, 13, 0.96);
+}
+
+.hero {
+  border-color: rgba(215, 161, 95, 0.28);
+  box-shadow:
+    0 0 0 56px rgba(215, 161, 95, 0.024),
+    0 0 0 112px rgba(215, 161, 95, 0.017),
+    0 0 0 168px rgba(141, 78, 43, 0.012);
+}
+
+.nav-link.is-active,
+.nav-tool-link.is-active,
+.manage-button,
+.toolbar-button.primary {
+  color: #28180c;
+  background: #d7a15f;
+}
+
+.hero em,
+.signal-word,
+.tool-switch-link strong,
+.panel-label span {
+  color: #edc183;
+}
+
+.tool-card {
+  background:
+    radial-gradient(circle at 84% 0%, rgba(215, 161, 95, 0.08), transparent 24%),
+    var(--surface);
+}
+
+.tool-card:hover {
+  box-shadow: 0 24px 68px rgba(16, 7, 2, 0.3);
+}
+
+.tool-rail {
+  background:
+    linear-gradient(150deg, rgba(215, 161, 95, 0.08), transparent 54%),
+    #21160f;
+}
+
+.panel.result {
+  background: #21160f;
+}
+
+.tag {
+  border-color: rgba(215, 161, 95, 0.25);
+  background: rgba(215, 161, 95, 0.06);
+}
+
+.search-box:focus-within {
+  box-shadow: 0 0 0 4px rgba(215, 161, 95, 0.1);
+}
+
+.toolbar-button.primary {
+  background: #e2b374;
+}
+
+.editor-dialog,
+.toolbar-button,
+.card-action,
+.text-button {
+  --lime: #d7a15f;
+}
+
+.editor-dialog::backdrop {
+  background: rgba(14, 7, 3, 0.8);
+}
+
+body.is-embedded #manageButton,
+body.is-embedded .status,
+body.is-embedded .management-toolbar,
+body.is-embedded .card-admin,
+body.is-embedded footer {
+  display: none !important;
+}
+
+body.is-embedded .topbar {
+  grid-template-columns: auto minmax(0, 1fr);
+}
+
+body.is-embedded .shell {
+  width: min(1460px, calc(100% - 36px));
+}
+
+@media (max-width: 720px) {
+  body.is-embedded .shell {
+    width: calc(100% - 24px);
+  }
+}
